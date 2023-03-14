@@ -1,4 +1,4 @@
-# Function used to check input is valid
+# Main routine more efficient than v2
 
 
 def check_rounds():
@@ -25,14 +25,15 @@ def check_rounds():
 # Main routine goes here...
 
 rounds_played = 0
-choose_instruction = "Please choose rock (r), paper " \
-                     "(p) or scissors (s)"
+choose_instruction = "Please choose rock (r), paper (p) or scissors (s)"
 
-# Ask user for # of rounds, <enter> for infinite modee
+# Ask user for # of rounds, <enter> for infinite mode
 rounds = check_rounds()
 
 end_game = "no"
 while end_game == "no":
+
+    # Start of Game Play Loop
 
     # Rounds Heading
     print()
