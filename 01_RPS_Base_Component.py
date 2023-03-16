@@ -121,10 +121,13 @@ while rounds_played < rounds:
 
     elif user_choice == "rock" and comp_choice == "paper":
         feedback = "You lost"
+        rounds_lost += 1
     elif user_choice == "paper" and comp_choice == "scissors":
         feedback = "You lost"
+        rounds_lost += 1
     elif user_choice == "scissors" and comp_choice == "rock":
         feedback = "You lost"
+        rounds_lost += 1
 
     else:
         feedback = "You won"
@@ -139,3 +142,14 @@ while rounds_played < rounds:
 # If 'yes' show game history
 
 # Show game statistics
+
+# Quick Calculations (stats)
+rounds_won = rounds_played - rounds_lost - rounds_drawn
+
+# End of Games Statements
+print()
+print('***** End Game Summary *****')
+print("Won: {} \t|\t Lost: {} \t|\t Draw: "
+      "{}".format(rounds_won, rounds_lost, rounds_drawn))
+print()
+print("Thanks for playing")
