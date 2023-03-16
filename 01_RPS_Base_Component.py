@@ -29,7 +29,6 @@ def check_rounds():
 
 
 def choice_checker(question, valid_list, error):
-
     valid = False
     while not valid:
 
@@ -61,8 +60,14 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 
 # ask user for # of rounds then loop...
 rounds_played = 0
+rounds_lost = 0
+rounds_drawn = 0
+
 choose_instruction = "Please choose rock (r), paper (p) or scissors (s)"
 mode = "regular"
+
+result = ""
+feedback = ""
 
 # Ask user for # of rounds, <enter> for infinite mode
 rounds = check_rounds()
@@ -94,18 +99,41 @@ while rounds_played < rounds:
                    "paper / scissors (or xxx to quit)"
 
     # Ask user for choice and check it's valid
-    choose = choice_checker(choose_instruction, rps_list,
-                            choose_error)
+    user_choice = choice_checker(choose_instruction, rps_list,
+                                 choose_error)
+
+    # End game if exit code is typed
+    if user_choice == "xxx":
+        break
 
     rounds_played += 1
 
     # get computer choice
+    comp_choice = random.choice(rps_list[:-1])
+    print("Comp Choice: ", comp_choice)
 
     # compare choices
+    comp_index = 0
 
-    # End game if exit code is typed
-    if choose == "xxx":
-        break
+    if user_choice == comp_choice:
+        feedback = "It's a tie"
+        rounds_drawn += 1
+
+    elif user_choice == "rock" and comp_choice == "paper":
+        feedback = "You lost"
+    elif user_choice == "paper" and comp_choice == "scissors":
+        feedback = "You lost"
+    elif user_choice == "scissors" and comp_choice == "rock":
+        feedback = "You lost"
+
+    else:
+        feedback = "You won"
+
+    print("You chose {}, the computer chose {}. "
+          "\nResult: {}".format(user_choice, comp_choice, feedback))
+
+    comp_index += 1
+    print()
 
 # Ask user if they want to see their game history.
 # If 'yes' show game history
